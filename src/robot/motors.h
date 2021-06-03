@@ -5,13 +5,55 @@
 
 class Motors {
     public:
+        /**
+         * @brief Construct a new Motors object
+         */
         Motors();
+
+        /**
+         * @brief Moves the right hand of the robot.
+         * 
+         * @param armX 
+         * @param armY 
+         * @param armRot 
+         * @param elbow 
+         * @param handRot 
+         * @param hand 
+         */
         void moveRightHand(int armX, int armY, int armRot, int elbow, int handRot, int hand);
+        /**
+         * @brief Moves the left hand of the robot.
+         * 
+         * @param armX 
+         * @param armY 
+         * @param armRot 
+         * @param elbow 
+         * @param handRot 
+         * @param hand 
+         */
         void moveLeftHand(int armX, int armY, int armRot, int elbow, int handRot, int hand);
 
+        /**
+         * @brief Moves the head of the robot.
+         * 
+         * @param headX 
+         * @param headY 
+         */
         void moveHead(int headX, int headY);
 
+        /**
+         * @brief Gets the angle of motor.
+         * 
+         * @param motorIndex 
+         * @return int 
+         */
         int getMotor(int motorIndex);
+        /**
+         * @brief Whrites specified angle to the motor.
+         * 
+         * @param motorIndex 
+         * @param value 
+         */
         void writeMotor(int motorIndex, int value);
     private:
         Servo servos[25];
