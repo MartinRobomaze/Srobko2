@@ -14,7 +14,6 @@ int kontrolne_cislo = 159;
 int ton[] = {C4, G4, G4, A4, G4, B4, C5, C5, B4, G4, A4, G4, G4, C4};
 int doba[] = {4, 8, 8, 4, 4, 4, 4, 4, 4, 4, 4, 8, 8, 4};
 
-Servo s;
 Servo servorob1;
 Servo servorob2;
 Servo servorob3;
@@ -41,7 +40,6 @@ Servo servorob23;
 Servo servorob24;
 Servo servorob25;
 
-int uhol[25];
 int uholserva[25];
 int uholmin[25];
 int uholmax[25];
