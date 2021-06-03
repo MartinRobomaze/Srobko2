@@ -214,9 +214,8 @@ void setup()
 void loop()
 {
   int tl, t2, t3, t4, t5, t6;
-  //if(vzd<50){tlacidlo1();}
-  Serial.println(vzd); // Vypíše vzdialenosť
-                       //***** RF24 **************************
+  
+  //***** RF24 **************************
   if (radio.available())
   {
     radio.read(data, sizeof(data));

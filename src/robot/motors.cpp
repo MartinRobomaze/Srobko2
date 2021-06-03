@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "motors.h"
 
 Motors::Motors() {
@@ -9,6 +10,12 @@ Motors::Motors() {
 }
 
 void Motors::moveLeftHand(int armX, int armY, int armRot, int elbow, int handRot, int hand) {
+    armY = map(armY, 0, 180, 180, 0);
+    armRot = map(armRot, 0, 180, 180, 0);
+    elbow = map(elbow, 0, 115, 160, 50);
+    handRot = map(handRot, 0, 140, 140, 0);
+    hand = map(hand, 0, 60, 160, 100);
+
     servos[1].write(armY);
     servos[3].write(armX);
     servos[5].write(armRot);
@@ -20,6 +27,10 @@ void Motors::moveLeftHand(int armX, int armY, int armRot, int elbow, int handRot
 }
 
 void Motors::moveRightHand(int armX, int armY, int armRot, int elbow, int handRot, int hand) {
+    armRot = map(armRot, 0, 90, 170, 80);
+    elbow = map(elbow, 0, 115, 5, 110);
+    hand = map(hand, 0, 60, 10, 60);
+
     servos[0].write(armY);
     servos[2].write(armX);
     servos[4].write(armRot);
