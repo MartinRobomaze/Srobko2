@@ -9,13 +9,7 @@ Motors::Motors() {
     }
 }
 
-void Motors::moveLeftHand(int armX, int armY, int armRot, int elbow, int handRot, int hand) {
-    armY = map(armY, 0, 180, 180, 0);
-    armRot = map(armRot, 0, 180, 180, 0);
-    elbow = map(elbow, 0, 115, 160, 50);
-    handRot = map(handRot, 0, 140, 140, 0);
-    hand = map(hand, 0, 60, 160, 100);
-
+void Motors::moveLeftHand(int armX, int armY, int armRot, int elbow, int handRot, int handAngle) {
     servos[1].write(armY);
     servos[3].write(armX);
     servos[5].write(armRot);
@@ -23,14 +17,19 @@ void Motors::moveLeftHand(int armX, int armY, int armRot, int elbow, int handRot
     servos[7].write(elbow);
 
     servos[11].write(handRot);
-    servos[13].write(hand);
+    servos[13].write(handAngle);
+
+    servoAngles[1] = armY;
+    servoAngles[3] = armX;
+    servoAngles[5] = armRot;
+
+    servoAngles[7] = elbow;
+
+    servoAngles[11] = handRot;
+    servoAngles[13] = handAngle;
 }
 
-void Motors::moveRightHand(int armX, int armY, int armRot, int elbow, int handRot, int hand) {
-    armRot = map(armRot, 0, 90, 170, 80);
-    elbow = map(elbow, 0, 115, 5, 110);
-    hand = map(hand, 0, 60, 10, 60);
-
+void Motors::moveRightHand(int armX, int armY, int armRot, int elbow, int handRot, int handAngle) {
     servos[0].write(armY);
     servos[2].write(armX);
     servos[4].write(armRot);
@@ -38,7 +37,16 @@ void Motors::moveRightHand(int armX, int armY, int armRot, int elbow, int handRo
     servos[6].write(elbow);
 
     servos[10].write(handRot);
-    servos[12].write(hand);
+    servos[12].write(handAngle);
+
+    servoAngles[0] = armY;
+    servoAngles[2] = armX;
+    servoAngles[4] = armRot;
+
+    servoAngles[6] = elbow;
+
+    servoAngles[10] = handRot;
+    servoAngles[12] = handAngle;
 }
 
 void Motors::writeMotor(int motorIndex, int value) {
@@ -49,6 +57,8 @@ void Motors::writeMotor(int motorIndex, int value) {
     if (value < 0 || value > 180) {
         return;
     }
+
+    value = map(value, 0, 180, servoMinValues[motorIndex], servoMaxValues[motorIndex]);
 
     servos[motorIndex].write(value);
     servoAngles[motorIndex] = value;
