@@ -10,9 +10,9 @@ class Button {
         /**
          * @brief Construct a new Button object
          * 
-         * @param _pin 
+         * @param _buttonIndex
          */
-        Button(uint8_t _pin);
+        Button(uint8_t _buttonIndex);
 
         /**
          * @brief Set the callback function to be called after button press.
@@ -26,8 +26,11 @@ class Button {
          */
         void update();
     private:
-        uint8_t pin;
+        uint8_t buttonIndex;
+        uint8_t buttonPins[6] = {35, 36, 37, 38, 39, 40};
         buttonPressedCallback callback;
+
+        bool previousState = 0;
 };
 
 #endif

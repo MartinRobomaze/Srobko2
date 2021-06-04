@@ -8,6 +8,4 @@ Speaker::Speaker(uint8_t _pin) {
 
 void Speaker::play(int toneFreq, int duration) {
     tone(pin, toneFreq, duration);
-
-    noTone(pin);
 }

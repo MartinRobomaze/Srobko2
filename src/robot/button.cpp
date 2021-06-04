@@ -1,9 +1,9 @@
 #include "button.h"
 
-Button::Button(uint8_t _pin) {
-    pin = _pin;
+Button::Button(uint8_t _buttonIndex) {
+    buttonIndex = _buttonIndex;
 
-    pinMode(pin, INPUT_PULLUP);
+    pinMode(buttonIndex, INPUT_PULLUP);
 }
 
 void Button::setCallback(buttonPressedCallback _callback) {
@@ -11,7 +11,11 @@ void Button::setCallback(buttonPressedCallback _callback) {
 }
 
 void Button::update() {
-    if (digitalRead(pin)) {
+    bool buttonState = digitalRead(buttonPins[buttonIndex]);
+
+    if (buttonState && buttonState != previousState) {
         callback();
     }
+
+    previousState = buttonState;
 }

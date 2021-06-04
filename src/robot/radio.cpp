@@ -65,8 +65,8 @@ bool Radio::readData(robotPosition *position) {
 
     uint8_t data[25];
 
-    for (int i = 1; i < 26; i++) {
-        data[i-1] = rawData[i];
+    for (int i = 0; i < 25; i++) {
+        data[i] = rawData[i+1];
     }
 
     parseRawData(position, data);
