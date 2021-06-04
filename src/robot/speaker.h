@@ -11,6 +11,7 @@ class Speaker {
          * @param pin 
          */
         Speaker(uint8_t _pin);
+        
         /**
          * @brief Plays a tone for a specified amount of time.
          * 

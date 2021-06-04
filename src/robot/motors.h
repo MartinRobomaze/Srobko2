@@ -1,8 +1,8 @@
 #include <Servo.h>
 #include "types.h"
 
-#ifndef MOTORS
-#define MOTORS
+#ifndef MOTORS_H
+#define MOTORS_H
 
 class Motors {
     public:
