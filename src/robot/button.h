@@ -7,7 +7,8 @@ typedef void (*buttonPressedCallback)();
 
 class Button {
     public:
-        Button(uint8_t _pin, buttonPressedCallback _callback);
+        Button(uint8_t _pin);
+        void setCallback(buttonPressedCallback);
         void update();
     private:
         uint8_t pin;

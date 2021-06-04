@@ -1,10 +1,13 @@
 #include "button.h"
 
-Button::Button(uint8_t _pin, buttonPressedCallback _callback) {
+Button::Button(uint8_t _pin) {
     pin = _pin;
-    callback = _callback;
 
     pinMode(pin, INPUT_PULLUP);
+}
+
+void Button::setCallback(buttonPressedCallback _callback) {
+    callback = _callback;
 }
 
 void Button::update() {
