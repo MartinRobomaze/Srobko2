@@ -1,13 +1,13 @@
 from flask import *
 from RadioController import RadioController
 from os import path, makedirs, mknod
-from threading import Thread
+
 
 app = Flask(__name__)
 
 filename_list = []
 
-radio = RadioController()
+rf = RadioController()
 
 
 # makes sure list of movements exists
@@ -19,45 +19,50 @@ if not path.exists("movements/_files.list"):
         mknod("movements/_files.list")
 
 
-@app.route("/add_filename", methods=['GET'])
-def handle_add_filename():
-    print("Add_filename")
-    add_filename = str(request.args.get('add_filename'))
+@app.route("/add_movement", methods=['GET'])
+def handle_add_movement():
+    add_movement = str(request.args.get('add_movement'))
 
-    if add_filename != None:
-        if not add_filename in filename_list:
+    if add_movement != None:
+        if not add_movement in filename_list:
             with open("movements/_files.list", "a") as file:
-                file.write(add_filename + " ")
-                #mknod("movements/" + add_filename + ".rbm")
+                file.write(add_movement + " ")
 
-        radio.receiveData(add_filename)
+        rf.receiveData(add_movement)
 
     return render_template("add_movement.html")
 
 
 @app.route("/stop_recording", methods=['GET'])
 def handle_stop_recording():
-    radio.stopReceiving()
+    rf.stopReceiving()
     return redirect("/")
 
 
-@app.route("/load_filename", methods=['GET'])
-def handle_load_filename():
-    load_filename = str(request.args.get('load_filename')) + ".rbm"
-
-    if load_filename != None:
-        print(load_filename)
-        pass
-
+@app.route("/stop_playing", methods=['GET'])
+def handle_stop_playing():
+    rf.stopSending()
     return redirect("/")
+
+
+@app.route("/load_movement", methods=['GET'])
+def handle_load_movement():
+    load_movement = str(request.args.get('load_movement'))
+
+    if load_movement != None:
+        if load_movement in filename_list:
+            return redirect("/")
+        else:
+            rf.sendData(load_movement)
+
+    return render_template("load_movement.html")
 
 
 @app.route("/", methods=['GET'])
 def index():
-    print("AAAAAA")
     with open("movements/_files.list", "r") as file:
-        filename_list = file.readline().strip().split()
+        movements_list = file.readline().strip().split()
 
-        print(filename_list)
+        print(movements_list)
 
-    return render_template("index.html",  filename_list=filename_list)
+    return render_template("index.html", movements_list=movements_list)
