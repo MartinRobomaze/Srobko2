@@ -1,0 +1,42 @@
+/* CSS Document */
+<style type = "text/css">
+    .hlavicka{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1200;
+    height: 150;
+    background-color: grey;
+    color: cyan;
+    }
+    
+    .lavy{
+    position: absolute;
+    top: 150;
+    left: 0;
+    width: 150; 
+    background-color: darkblue;
+    color: lightpink;   
+    text-align: center;
+    }
+    
+    .obsah{
+    position: absolute;
+    top: 150;
+    left: 150;
+    width: 900;
+    background-color: black;
+    color: green;
+    text-align: center;
+    }
+    
+    .pravy{
+    position: absolute;
+    top: 150;
+    left: 1050;
+    width: 150;
+    background-color: purple;
+    color: white;
+    text-align: center;
+    }
+    

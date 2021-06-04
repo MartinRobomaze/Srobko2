@@ -1,28 +1,15 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-    <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1250">
+  <title>wallstreetbets</title>
+   <frameset rows="10%,90%">
+        <frame src="nadpis.html" name = "nadpis">
+        <frameset cols="25%,75%">  
+            <frame src="left.html" name = "left"> 
+            <frame src="main.html" name = "main">
+        </frameset>
+  </frameset>
+  </head>
 
-    <body>
-        <p>Add movement</p>
-        <form id="add_movement" action="add_filename">
-            <label for="add_filename">Name of the movement: </label>
-            <input type="text" id="add_filename" name="add_filename"><br>
-
-            <input type="submit" value="Start">
-        </form>
-
-        <p>Play movement</p>
-        <form id="load_movement" action="load_filename">
-        <label for="load_filename">Name of the movement: </label>
-        <select name="load_filename" id="load_filename" form="load_movement">
-            {% for f in filename_list %}
-                <option value="{{ f }}">{{ f }}</option>
-            {% endfor %}
-        </select><br>   
-
-        <input type="submit" value="Play">
-        </form>
-    </body>     
 </html>
