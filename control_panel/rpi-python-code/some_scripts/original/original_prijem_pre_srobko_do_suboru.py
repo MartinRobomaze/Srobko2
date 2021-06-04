@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from lib_nrf24 import NRF24
+from python_libs.lib_nrf24 import NRF24
 import time
 import spidev
  
@@ -20,7 +20,7 @@ radio.openReadingPipe(0, pipes[1])
 radio.printDetails()
 radio.startListening()#pre prijem
 #radio.stopListening()#pre vysielanie
-    
+
 su=open('srobko_data.txt','w')
 #data=[159,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,200]
 data=[0]*25
