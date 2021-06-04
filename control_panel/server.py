@@ -1,18 +1,20 @@
 from flask import *
-import transmitter
+from transmitter import *
 from os import path, makedirs, mknod
+from threading import Thread
 
 app = Flask(__name__)
 
 filename_list = []
 
+
 # makes sure list of movements exists
 if not path.exists("movements"):
     if not path.isdir("movements"):
         makedirs("movements")
-if not path.exists("movements/files.list"):
-    if not path.isfile("movements/files.list"):
-        mknod("movements/files.list")
+if not path.exists("movements/_files.list"):
+    if not path.isfile("movements/_files.list"):
+        mknod("movements/_files.list")
 
 
 @app.route("/add_filename", methods=['GET'])
@@ -21,11 +23,11 @@ def handle_add_filename():
     
     if add_filename != None:
         if not add_filename in filename_list:
-            with open("movements/files.list", "a") as file:
-                file.write(add_filename)
+            with open("movements/_files.list", "a") as file:
+                file.write(add_filename + " ")
                 mknod("movements/" + add_filename)
     
-    return redirect("/")
+    return render_template("add_movement.html")
 
 
 @app.route("/load_filename", methods=['GET'])
@@ -41,7 +43,15 @@ def handle_load_filename():
 
 @app.route("/", methods=['GET'])
 def index():
-    with open("movements/files.list", "r") as file:
-        filename_list = [line.strip().split() for line in file]
+    with open("movements/_files.list", "r") as file:
+        filename_list = file.readline().strip().split()
+
+        print(filename_list)
     
     return render_template("index.html",  filename_list=filename_list)
+
+
+@app.route("/stop_recording", methods=['GET'])
+def handle_stop_recording():
+    
+    return redirect("/")

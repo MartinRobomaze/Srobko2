@@ -1,33 +1,33 @@
 import RPi.GPIO as GPIO
-from lib_nrf24 import NRF24
+from python_libs.lib_nrf24 import NRF24
 import time
 import spidev
 
 class Controller():
-    
+
     def __init__(self):
         # initialize radio
         GPIO.setmode(GPIO.BCM)
-        pipes = [[0xE8, 0xE8, 0xF0, 0xF0, 0xE1], [0xF0, 0xF0, 0xF0, 0xF0, 0xE1]]
-        radio = NRF24(GPIO, spidev.SpiDev())
-        radio.begin(0, 17)
-        radio.setPayloadSize(32) 
-        radio.setChannel(0x66)
-        radio.setDataRate(NRF24.BR_250KBPS)
-        radio.setPALevel(NRF24.PA_LOW)
-        radio.setAutoAck(True)
-        radio.enableDynamicPayloads()
-        radio.enableAckPayload()
-        radio.openWritingPipe(pipes[0])
-        radio.openReadingPipe(1, pipes[1])
-            
+        self.pipes = [[0xE8, 0xE8, 0xF0, 0xF0, 0xE1], [0xF0, 0xF0, 0xF0, 0xF0, 0xE1]]
+        self.radio = NRF24(GPIO, spidev.SpiDev())
+        self.radio.begin(0, 17)
+        self.radio.setPayloadSize(32) 
+        self.radio.setChannel(0x66)
+        self.radio.setDataRate(NRF24.BR_250KBPS)
+        self.radio.setPALevel(NRF24.PA_LOW)
+        self.radio.setAutoAck(True)
+        self.radio.enableDynamicPayloads()
+        self.radio.enableAckPayload()
+        self.radio.openWritingPipe(self.pipes[0])
+        self.radio.openReadingPipe(1, self.pipes[1])
+
 
     def setRadio(self, transmitting=True):
-        radio.printDetails()
-        radio.startListening()
+        self.radio.printDetails()
+        self.radio.startListening()
         if transmitting:
-            radio.stopListening()
-        
+            self.radio.stopListening()
+
 
     def sendData(self, filename):
         buffer = []
@@ -36,5 +36,5 @@ class Controller():
                 data = data.strip().split()
                 buffer = [int(i) for i in data]
                 print(buffer)
-                radio.write(buffer)
+                self.radio.write(buffer)
                 time.sleep(0.01)
