@@ -1,6 +1,3 @@
-
-// Konštanty tónov
-
 #define  B0  31
 #define  C1  33
 #define  CS1 35

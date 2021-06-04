@@ -1,52 +1,53 @@
 #include <Arduino.h>
 #include "motors.h"
 
+
 Motors::Motors() {
     for (int i = 0; i < 25; i++) {
-        servos[i].attach(servoPins[i]);
+        servos[i].attach(motorsPins[i]);
         servos[i].write(initValues[i]);
-        servoAngles[i] = initValues[i];
     }
 }
 
-void Motors::moveLeftHand(int armX, int armY, int armRot, int elbow, int handRot, int handAngle) {
-    servos[1].write(armY);
-    servos[3].write(armX);
-    servos[5].write(armRot);
-
-    servos[7].write(elbow);
-
-    servos[11].write(handRot);
-    servos[13].write(handAngle);
-
-    servoAngles[1] = armY;
-    servoAngles[3] = armX;
-    servoAngles[5] = armRot;
-
-    servoAngles[7] = elbow;
-
-    servoAngles[11] = handRot;
-    servoAngles[13] = handAngle;
+Motors::Motors(uint8_t _motorsPins[25]) {
+    for (int i = 0; i < 25; i++) {
+        servos[i].attach(_motorsPins[i]);
+        servos[i].write(initValues[i]);
+        motorsPins[i] = _motorsPins[i];
+    }
 }
 
-void Motors::moveRightHand(int armX, int armY, int armRot, int elbow, int handRot, int handAngle) {
-    servos[0].write(armY);
-    servos[2].write(armX);
-    servos[4].write(armRot);
+void Motors::move(robotPosition position) {
+    moveLeftArm(position.leftArm);
+    moveRightArm(position.rightArm);
+    moveHead(position.head);
+}
 
-    servos[6].write(elbow);
+void Motors::moveLeftArm(armPosition position) {
+    servos[1].write(position.armY);
+    servos[3].write(position.armX);
+    servos[5].write(position.armRot);
 
-    servos[10].write(handRot);
-    servos[12].write(handAngle);
+    servos[7].write(position.elbow);
 
-    servoAngles[0] = armY;
-    servoAngles[2] = armX;
-    servoAngles[4] = armRot;
+    servos[11].write(position.handRot);
+    servos[13].write(position.handAngle);
+}
 
-    servoAngles[6] = elbow;
+void Motors::moveRightArm(armPosition position) {
+    servos[0].write(position.armY);
+    servos[2].write(position.armX);
+    servos[4].write(position.armRot);
 
-    servoAngles[10] = handRot;
-    servoAngles[12] = handAngle;
+    servos[6].write(position.elbow);
+
+    servos[10].write(position.handRot);
+    servos[12].write(position.handAngle);
+}
+
+void Motors::moveHead(headPosition position) {
+    servos[8].write(position.headY);
+    servos[9].write(position.headX);
 }
 
 void Motors::writeMotor(int motorIndex, int value) {
@@ -61,13 +62,4 @@ void Motors::writeMotor(int motorIndex, int value) {
     value = map(value, 0, 180, servoMinValues[motorIndex], servoMaxValues[motorIndex]);
 
     servos[motorIndex].write(value);
-    servoAngles[motorIndex] = value;
-}
-
-int Motors::getMotor(int motorIndex) {
-    if (motorIndex > 25) {
-        return -1;
-    }
-
-    return servoAngles[motorIndex];
 }
