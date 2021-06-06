@@ -17,13 +17,13 @@ Motors::Motors(uint8_t _motorsPins[25]) {
     }
 }
 
-void Motors::move(robotPosition position) {
+void Motors::move(RobotPosition position) {
     moveLeftArm(position.leftArm);
     moveRightArm(position.rightArm);
     moveHead(position.head);
 }
 
-void Motors::moveLeftArm(armPosition position) {
+void Motors::moveLeftArm(ArmPosition position) {
     servos[1].write(position.armY);
     servos[3].write(position.armX);
     servos[5].write(position.armRot);
@@ -34,7 +34,7 @@ void Motors::moveLeftArm(armPosition position) {
     servos[13].write(position.handAngle);
 }
 
-void Motors::moveRightArm(armPosition position) {
+void Motors::moveRightArm(ArmPosition position) {
     servos[0].write(position.armY);
     servos[2].write(position.armX);
     servos[4].write(position.armRot);
@@ -45,7 +45,7 @@ void Motors::moveRightArm(armPosition position) {
     servos[12].write(position.handAngle);
 }
 
-void Motors::moveHead(headPosition position) {
+void Motors::moveHead(HeadPosition position) {
     servos[8].write(position.headY);
     servos[9].write(position.headX);
 }

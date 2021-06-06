@@ -4,7 +4,7 @@
 #include <robot/motors.h>
 
 Motors motors;
-armPosition position;
+ArmPosition position;
 
 // Program zbehne raz.
 void setup() {

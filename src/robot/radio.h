@@ -24,7 +24,7 @@ class Radio {
          * @return true 
          * @return false 
          */
-        bool readData(robotPosition &position);
+        bool readData(RobotPosition &position);
 
         /**
          * @brief Destroy the Radio object.

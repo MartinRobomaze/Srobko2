@@ -4,14 +4,14 @@
 #include <robot/motors.h>
 #include <robot/tones.h>
 
-// Noty "Iveann Polkky".
+// Noty "Ievann Polkky".
 int tones[] = {AS3, AS3, DS4, DS4, F4, FS4, DS4, DS4, FS4, F4, CS4, CS4, F4, FS4, DS4, DS4, AS3, AS3, DS4, DS4, F4, FS4, DS4, DS4, FS4, AS4, GS4, FS4, F4, FS4, DS4, DS4};
 int bpm = 130;
 
 // Pozicia hlava hore.
-headPosition headUp;
+HeadPosition headUp;
 // Pozicia hlava dole.
-headPosition headDown;
+HeadPosition headDown;
 Motors motors;
 Speaker speaker;
 

@@ -22,27 +22,27 @@ class Motors {
          * 
          * @param position 
          */
-        void move(robotPosition position);
+        void move(RobotPosition position);
 
         /**
          * @brief Moves the right hand of the robot.
          * 
          * @param position 
          */
-        void moveRightArm(armPosition position);
+        void moveRightArm(ArmPosition position);
         /**
          * @brief Moves the left hand of the robot.
          * 
          * @param position 
          */
-        void moveLeftArm(armPosition position);
+        void moveLeftArm(ArmPosition position);
 
         /**
          * @brief Moves the hand of a robot.
          * 
          * @param position 
          */
-        void moveHead(headPosition position);
+        void moveHead(HeadPosition position);
 
         /**
          * @brief Gets the angle of motor.

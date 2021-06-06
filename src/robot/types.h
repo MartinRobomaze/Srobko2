@@ -2,88 +2,105 @@
  * @brief Holds the position of an arm.
  * 
  */
-struct armPosition {
+struct ArmPosition {
     int armX;
     int armY;
     int armRot;
     int elbow;
     int handRot;
     int handAngle;
+
+    /**
+     * @brief Construct a new Arm Position object.
+     * 
+     */
+    ArmPosition(): armX(0), armY(0), armRot(0), elbow(0), handRot(0), handAngle(0) {}
 };
 
 /**
  * @brief Holds the position of head.
  * 
  */
-struct headPosition {
+struct HeadPosition {
     int headX;
     int headY;
+
+    /**
+     * @brief Construct a new Head Position object.
+     * 
+     */
+    HeadPosition(): headX(0), headY(0) {}
 };
 
 /**
  * @brief Holds the position of the robot.
  * 
  */
-struct robotPosition {
-    headPosition head;
-    armPosition leftArm;
-    armPosition rightArm;
+struct RobotPosition {
+    HeadPosition head;
+    ArmPosition leftArm;
+    ArmPosition rightArm;
+
+    /**
+     * @brief Construct a new Robot Position object.
+     * 
+     */
+    RobotPosition(): head(HeadPosition()), leftArm(ArmPosition()), rightArm(ArmPosition()) {}
+
+    /**
+     * @brief Parses raw data to RobotPosition.
+     * 
+     * @param position 
+     * @param data 
+     */
+    void parseRawData(uint8_t data[25]) {
+        leftArm.armY = data[1];
+        leftArm.armX = data[3];
+        leftArm.armRot = data[5];
+
+        leftArm.elbow = data[7];
+
+        leftArm.handRot = data[11];
+        leftArm.handAngle = data[13];
+
+        rightArm.armY = data[0];
+        rightArm.armX = data[2];
+        rightArm.armRot = data[4];
+
+        rightArm.elbow = data[6];
+
+        rightArm.handRot = data[10];
+        rightArm.handAngle = data[12];
+
+        head.headY = data[8];
+        head.headX = data[9];
+    }
+
+    /**
+     * @brief Parses RobotPosition to raw data.
+     * 
+     * @param data 
+     */
+    void toRawData(char data[25]) {
+        data[1] = leftArm.armY;
+        data[3] = leftArm.armX;
+        data[5] = leftArm.armRot;
+
+        data[7] = leftArm.elbow;
+
+        data[11] = leftArm.handRot;
+        data[13] = leftArm.handAngle;
+
+        data[0] = rightArm.armY;
+        data[2] = rightArm.armX;
+        data[4] = rightArm.armRot;
+
+        data[6] = rightArm.elbow;
+
+        data[10] = rightArm.handRot;
+        data[12] = rightArm.handAngle;
+
+        data[8] = head.headY;
+        data[9] = head.headX;
+    }
 };
-
-/**
- * @brief Parses raw data to robotPosition.
- * 
- * @param position 
- * @param data 
- */
-void parseRawData(robotPosition &position, uint8_t data[25]) {
-    position.leftArm.armY = data[1];
-    position.leftArm.armX = data[3];
-    position.leftArm.armRot = data[5];
-
-    position.leftArm.elbow = data[7];
-
-    position.leftArm.handRot = data[11];
-    position.leftArm.handAngle = data[13];
-
-    position.rightArm.armY = data[0];
-    position.rightArm.armX = data[2];
-    position.rightArm.armRot = data[4];
-
-    position.rightArm.elbow = data[6];
-
-    position.rightArm.handRot = data[10];
-    position.rightArm.handAngle = data[12];
-
-    position.head.headY = data[8];
-    position.head.headX = data[9];
-}
-
-/**
- * @brief Parses robotPosition to raw data.
- * 
- * @param position 
- * @param data 
- */
-void toRawData(robotPosition position, char data[25]) {
-    data[1] = position.leftArm.armY;
-    data[3] = position.leftArm.armX;
-    data[5] = position.leftArm.armRot;
-
-    data[7] = position.leftArm.elbow;
-
-    data[11] = position.leftArm.handRot;
-    data[13] = position.leftArm.handAngle;
-
-    data[0] = position.rightArm.armY;
-    data[2] = position.rightArm.armX;
-    data[4] = position.rightArm.armRot;
-
-    data[6] = position.rightArm.elbow;
-
-    data[10] = position.rightArm.handRot;
-    data[12] = position.rightArm.handAngle;
-
-    data[8] = position.head.headY;
-    data[9] = position.head.headX;
-}

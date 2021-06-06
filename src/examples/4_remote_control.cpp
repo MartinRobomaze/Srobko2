@@ -10,7 +10,7 @@ void setup() {
 }
 
 void loop() {
-    robotPosition position;
+    RobotPosition position;
 
     // Precitaj data z ovladaca.
     bool newData = radio.readData(position);

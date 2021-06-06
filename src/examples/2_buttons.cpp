@@ -4,7 +4,7 @@
 #include <robot/motors.h>
 #include <robot/button.h>
 
-headPosition position;
+HeadPosition position;
 Motors motors;
 
 Button b1(0);
@@ -28,6 +28,6 @@ void loop() {
         position.headX = -90;
         motors.moveHead(position);
     } else {
-        
+
     }
 }
