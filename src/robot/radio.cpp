@@ -39,7 +39,7 @@ Radio::Radio(uint8_t _cePin, uint8_t _csnPin) {
     radio->startListening();
 }
 
-bool Radio::readData(robotPosition *position) {
+bool Radio::readData(robotPosition &position) {
     uint8_t rawData[26];
     
     if (!radio->available()) {
