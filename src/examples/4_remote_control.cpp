@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <robot/radio.h>
 #include <robot/motors.h>
 #include <robot/types.h>

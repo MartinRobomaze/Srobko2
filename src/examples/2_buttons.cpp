@@ -28,6 +28,7 @@ void loop() {
         position.headX = -90;
         motors.moveHead(position);
     } else {
-
+        position.headX = 0;
+        motors.moveHead(position);
     }
 }
