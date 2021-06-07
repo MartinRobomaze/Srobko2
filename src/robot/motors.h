@@ -45,13 +45,6 @@ class Motors {
         void moveHead(HeadPosition position);
 
         /**
-         * @brief Gets the angle of motor.
-         * 
-         * @param motorIndex 
-         * @return int 
-         */
-        int getMotor(int motorIndex);
-        /**
          * @brief Writes specified angle to the motor.
          * 
          * @param motorIndex 

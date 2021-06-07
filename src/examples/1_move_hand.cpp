@@ -1,5 +1,4 @@
 // Pridanie kniznic srobka.
-#include <Arduino.h>
 #include <robot/types.h>
 #include <robot/motors.h>
 

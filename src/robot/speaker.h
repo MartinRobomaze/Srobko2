@@ -7,10 +7,9 @@ class Speaker {
     public:
         /**
          * @brief Construct a new Speaker object
-         * 
-         * @param pin 
+         *  
          */
-        Speaker(uint8_t _pin);
+        Speaker();
         
         /**
          * @brief Plays a tone for a specified amount of time.
@@ -20,7 +19,7 @@ class Speaker {
          */
         void play(int toneFreq, int duration);
     private:
-        uint8_t pin;
+        uint8_t pin = 46;
 };
 
 #endif

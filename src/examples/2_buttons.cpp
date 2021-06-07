@@ -1,5 +1,4 @@
 // Pridanie kniznic srobka.
-#include <Arduino.h>
 #include <robot/types.h>
 #include <robot/motors.h>
 #include <robot/button.h>
@@ -28,6 +27,7 @@ void loop() {
         position.headX = -90;
         motors.moveHead(position);
     } else {
-
+        position.headX = 0;
+        motors.moveHead(position);
     }
 }
