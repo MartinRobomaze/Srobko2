@@ -21,7 +21,7 @@ if not path.exists("movements/_files.list"):
 
 @app.route("/add_movement", methods=['GET'])
 def handle_add_movement():
-    add_movement = str(request.args.get('add_movement'))
+    add_movement = str(request.args.get('add_movement')).replace(" ", "_")
 
     if add_movement != None:
         if not add_movement in filename_list:
