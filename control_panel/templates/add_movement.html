@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+        <title>Srobko control panel</title>
+    </head>
+
+    <body>
+        <div class="container">
+        <h1>Recording...</h1>
+        <form action="/stop_recording">
+            <button type="submit" class="btn btn-danger">Stop</button>
+        </form>
+        </div>
+    </body>     
+</html>
