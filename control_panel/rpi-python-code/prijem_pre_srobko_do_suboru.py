@@ -20,7 +20,7 @@ radio.openReadingPipe(0, pipes[1])
 radio.printDetails()
 radio.startListening()#pre prijem
 #radio.stopListening()#pre vysielanie
-    
+
 su=open('srobko_data.txt','w')
 #data=[159,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,200]
 data=[0]*25

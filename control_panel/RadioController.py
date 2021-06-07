@@ -21,7 +21,7 @@ class RadioController():
         self.radio.setAutoAck(True)
         self.radio.enableDynamicPayloads()
         self.radio.enableAckPayload()
-        self.radio.openWritingPipe(self.pipes[0])
+        self.radio.openWritingPipe(self.pipes[1])
         self.radio.openReadingPipe(1, self.pipes[1])
         self.stopping_queue = Queue(maxsize=1)
 
@@ -73,8 +73,8 @@ class RadioController():
                 if not self.stopping_queue.empty():
                     if self.stopping_queue.get() == "STOP":
                         break
-                print(line.strip())
-                self.radio.write(line.strip())
+                print(list(map(int, line.strip().split())))
+                self.radio.write(list(map(int, line.strip().split())))
                 time.sleep(0.01)
     
     def stopSending(self):
