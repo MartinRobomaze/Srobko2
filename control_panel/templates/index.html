@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <title>Srobko control panel</title>
+  </head>
+  <body>
+      <div class="container">
+        <h1>Srobko control panel</h1>
+      </div>
+    <div class="container">
+        <h2>Add new movement:</h2>
+        <form action="add_movement">
+            <fieldset class="form-group">
+                <input type="add_movement" class="form-control" id="add_movement" placeholder="Enter name of the movement" 
+                    name="add_movement">
+            </fieldset>
+            <br>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h2>Load movement:</h2>
+        <form id="load_movement" action="load_movement">
+            <fieldset class="form-group">
+                <select class="form-control" name="load_movement" id="load_movement" form="load_movement">
+                    {% for f in movements_list %}
+                        <option value="{{ f }}">{{ f }}</option>
+                    {% endfor %}
+                </select>
+            </fieldset>
+            <br>
+            <button type="submit" class="btn btn-primary">Load</button>
+        </form>
+    </div>
+  </body>
+</html>
