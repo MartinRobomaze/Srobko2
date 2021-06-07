@@ -1,4 +1,5 @@
 // Kniznice pre srobka.
+#include <Arduino.h>
 #include <robot/speaker.h>
 #include <robot/types.h>
 #include <robot/motors.h>
