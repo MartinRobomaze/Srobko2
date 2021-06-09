@@ -1,8 +1,6 @@
 #include "speaker.h"
 
-Speaker::Speaker(uint8_t _pin) {
-    pin = _pin;
-
+Speaker::Speaker() {
     pinMode(pin, OUTPUT);
 }
 

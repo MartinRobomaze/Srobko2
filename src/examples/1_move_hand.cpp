@@ -21,7 +21,7 @@ void loop() {
 
     // Nastavenie vertikalnej pozicie lavej ruky na 0 stupnov.
     position.armY = 0;
-    motors.moveRightArm(position);
+    motors.moveLeftArm(position);
     // Cakaj 1 sekundu.
     delay(1000);
 }

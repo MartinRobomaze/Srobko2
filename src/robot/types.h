@@ -1,3 +1,6 @@
+#ifndef TYPES_H
+#define TYPES_H
+
 /**
  * @brief Holds the position of an arm.
  * 
@@ -104,3 +107,4 @@ struct RobotPosition {
         data[9] = head.headX;
     }
 };
+#endif
